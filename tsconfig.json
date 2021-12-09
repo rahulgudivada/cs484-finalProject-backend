@@ -9,9 +9,13 @@
         "lib": ["es6", "dom"],
         "sourceMap": true,
         "allowJs": true,
+        "jsx": "react",
         "skipLibCheck": true,
         "moduleResolution": "node",
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
         "noImplicitAny": true,
-        "noUnusedLocals": false
+        "noUnusedLocals": false,
+        "strictNullChecks": true
     }
 }
