@@ -5,7 +5,6 @@ import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport'
 import User from '../database/User';
-import { IUser } from './types'
 
 //OAuth Passport Strategies
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -133,6 +132,6 @@ app.get("/auth/logout", (req, res) => {
   }
 })
 
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started")
 })
