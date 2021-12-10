@@ -20,7 +20,7 @@ sequelize.sync().then(() => console.log("Connected to database"));
 
 //Middleware
 app.use(express.json())
-app.use(cors({ origin: "http://loving-galileo-f30e7e.netlify.app", credentials: true}))
+app.use(cors({ origin: "https://loving-galileo-f30e7e.netlify.app", credentials: true}))
 
 app.set("trust proxy", 1);
 
