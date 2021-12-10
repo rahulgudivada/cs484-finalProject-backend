@@ -20,7 +20,7 @@ sequelize.sync().then(() => console.log("Connected to database"));
 
 //Middleware
 app.use(express.json())
-app.use(cors({ origin: "http://localhost:3000", credentials: true}))
+app.use(cors({ origin: "https://loving-galileo-f30e7e.netlify.app", credentials: true}))
 
 app.set("trust proxy", 1);
 
@@ -113,7 +113,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000');
+    res.redirect('https://loving-galileo-f30e7e.netlify.app');
   });
 
 app.get('/auth/github', passport.authenticate('github'));
@@ -122,7 +122,7 @@ app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000');
+    res.redirect('https://loving-galileo-f30e7e.netlify.app');
   });
 
 app.get('/', (req, res) =>{
