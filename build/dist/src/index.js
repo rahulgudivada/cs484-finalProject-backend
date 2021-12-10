@@ -18,11 +18,17 @@ const app = (0, express_1.default)();
 database_1.default.sync().then(() => console.log("Connected to database"));
 //Middleware
 app.use(express_1.default.json());
-app.use((0, cors_1.default)({ origin: "http://localhost:3000", credentials: true }));
+app.use((0, cors_1.default)({ origin: "https://loving-galileo-f30e7e.netlify.app", credentials: true }));
+app.set("trust proxy", 1);
 app.use((0, express_session_1.default)({
     secret: "secretcode",
     resave: true,
     saveUninitialized: true,
+    cookie: {
+        sameSite: "none",
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7 //1 week age
+    }
 }));
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
@@ -83,14 +89,14 @@ passport_1.default.use(new GitHubStrategy({
 }));
 // //Google Authenticate Requests
 app.get('/auth/google', passport_1.default.authenticate('google', { scope: ['profile'] }));
-app.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: '/login' }), function (req, res) {
+app.get('/auth/google/callback', passport_1.default.authenticate('google', { failureRedirect: 'https://loving-galileo-f30e7e.netlify.app', session: true }), function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000');
+    res.redirect('https://loving-galileo-f30e7e.netlify.app');
 });
 app.get('/auth/github', passport_1.default.authenticate('github'));
-app.get('/auth/github/callback', passport_1.default.authenticate('github', { failureRedirect: '/login' }), function (req, res) {
+app.get('/auth/github/callback', passport_1.default.authenticate('github', { failureRedirect: 'https://loving-galileo-f30e7e.netlify.app', session: true }), function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000');
+    res.redirect('https://loving-galileo-f30e7e.netlify.app');
 });
 app.get('/', (req, res) => {
     res.send("Hello World");

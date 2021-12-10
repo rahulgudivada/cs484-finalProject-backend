@@ -106,11 +106,10 @@ function(accessToken: any, refreshToken: any, profile: any, cb:any) {
 
 // //Google Authenticate Requests
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile']}));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile']}));
 
 app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: 'https://loving-galileo-f30e7e.netlify.app', session:true }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('https://loving-galileo-f30e7e.netlify.app');
@@ -119,7 +118,7 @@ app.get('/auth/google/callback',
 app.get('/auth/github', passport.authenticate('github'));
 
 app.get('/auth/github/callback', 
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  passport.authenticate('github', { failureRedirect: 'https://loving-galileo-f30e7e.netlify.app', session: true }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('https://loving-galileo-f30e7e.netlify.app');
